@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Suraj Azad</title>
+  <style>
+    @media only screen and (max-device-width: 480px) {
+        .col-25,.panel-body {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+        .amount {
+          width: 80%;
+        }
+    }
+    button {
+      background-color: gainsboro;
+      padding: 20px;
+    }
+    td {
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+    }
+  </style>
+<script type="text/javascript">
+  window.onload = function () {
+    document.getElementById("calculate").addEventListener('click', function () {
+      var _amtpaid = document.getElementById('amount').value;
+      calculateBreakup(_amtpaid);
+    });
+    document.getElementById("clear").addEventListener('click', function () {
+      document.getElementById('amount').value = '';
+    });
+  }
+  function calculateBreakup(_amtpaid) {
+      var preGSTamt = Math.round((_amtpaid * 100) / 112);
+      var gst = _amtpaid - preGSTamt;
+      var listdata = '<table border="1"><tr><td>AMOUNT</td><td>' + preGSTamt + '</td></tr><tr><td>GST12%</td><td>' + gst + '</td></tr><tr><td>Total</td><td>' + _amtpaid + '</td></tr></table>';
+      document.getElementById("list").innerHTML = listdata;
+
+    }
+  </script>
+</head>
+<body>
+  <div class="panel-head">
+    <h1>Geetraj Constructions Pvt Ltd</h1>
+  </div>
+  <div class="panel-body" style="border-style: double">
+    <div class="col-25">
+    <input type="text" class="amount" id="amount" name="amount" placeholder="AMOUNT PAID BY CUSTOMER" style="font-size: large;padding: 15px;">
+    </div>
+    <div class="col-25 btnGrp">
+      <button id="calculate" type="button" style="margin:10px 5px 5px;width: 50%;">CALCULATE</button>
+      <button id="clear" type="button" style="width: 40%;">RESET</button>
+    </div>
+    <div id='list'>
+    </div>
+  </div>
+</body>
+<footer>
+		<p> &copy; Suraj Azad</p>
+	</footer>
+</html>
